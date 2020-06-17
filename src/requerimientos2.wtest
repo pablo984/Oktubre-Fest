@@ -1,0 +1,45 @@
+import cervezasYJarras.*
+import personas.*
+import carpas.*
+
+test "Requerimientos - Segunda parte" {
+	/*Creación de las instancias de Cervezas Rubia, Negra y Roja*/
+	const corona = new CervezaRubia(lupuloPorLitro=2, paisDeOrigen="Mexico", graduacionAlcoholica=5)
+	const guinness = new CervezaNegra(lupuloPorLitro=3, paisDeOrigen="Irlanda", graduacionAlcoholica=10)
+	const hofbrau = new CervezaRoja(lupuloPorLitro=1.5, paisDeOrigen="Alemania", graduacionAlcoholica=8)
+	const corona2 = new CervezaRubia(lupuloPorLitro=3, paisDeOrigen="Mexico", graduacionAlcoholica=9)
+	const guinness2 = new CervezaNegra(lupuloPorLitro=6, paisDeOrigen="Irlanda", graduacionAlcoholica=4)
+	const hofbrau2 = new CervezaRoja(lupuloPorLitro=5, paisDeOrigen="Mexico", graduacionAlcoholica=3)
+	
+	/*Creación de las instancias de Jarra*/
+	const jarra1 = new Jarra(litros=1, marca=corona)
+	const jarra2 = new Jarra(litros=1.5, marca=guinness)
+	const jarra3 = new Jarra(litros=2, marca=hofbrau)
+	const jarra4 = new Jarra(litros=1.5, marca=corona2)
+	const jarra5 = new Jarra(litros=3, marca=guinness2)
+	const jarra6 = new Jarra(litros=0.5, marca=hofbrau2)	
+	
+	/*Creación de las instancias de las personas*/
+	const victor = new Belga(peso=85, leGustaLaMusicaTradicional=true, nivelDeAguante=5)
+	const ludmila = new Checo(peso=57, leGustaLaMusicaTradicional=false, nivelDeAguante=3)
+	const adolph = new Aleman(peso=75, leGustaLaMusicaTradicional=true, nivelDeAguante=8)
+	const thomas = new Belga(peso=62, leGustaLaMusicaTradicional=false, nivelDeAguante=19)
+	const albert = new Aleman(peso=73, leGustaLaMusicaTradicional=true, nivelDeAguante=12)
+	const milena = new Checo(peso=50, leGustaLaMusicaTradicional=true, nivelDeAguante=7)
+
+	/*Creación de las instancias de Carpa*/
+	const carpa1 = new Carpa(limiteDeGente=50, tieneBandaMusical=false, marcaSponsor=corona)
+	const carpa2 = new Carpa(limiteDeGente=100, tieneBandaMusical=true, marcaSponsor=guinness)
+	const carpa3 = new Carpa(limiteDeGente=80, tieneBandaMusical=true, marcaSponsor=hofbrau)
+	const carpa4 = new Carpa(limiteDeGente=40, tieneBandaMusical=false, marcaSponsor=hofbrau2)
+	const carpa5 = new Carpa(limiteDeGente=90, tieneBandaMusical=true, marcaSponsor=corona2)
+	const carpa6 = new Carpa(limiteDeGente=70, tieneBandaMusical=true, marcaSponsor=guinness2)
+		
+	/*Test para saber si una persona quiere entrar a determinadas Carpas*/
+	assert.that	(victor.quiereEntrarA(carpa6))
+	assert.notThat(victor.quiereEntrarA(carpa4))
+	
+	assert.that(ludmila.quiereEntrarA(carpa5))
+	assert.notThat(ludmila.quiereEntrarA(carpa2))
+
+}

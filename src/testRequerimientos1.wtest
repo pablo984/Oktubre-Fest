@@ -1,0 +1,91 @@
+import cervezasYJarras.*
+import personas.*
+
+
+test "Requerimientos - Primera parte" {
+	/*Creación de las instancias de Cervezas Rubia, Negra y Roja*/
+	const corona = new CervezaRubia(lupuloPorLitro=2, paisDeOrigen="Mexico", graduacionAlcoholica=5)
+	const guinness = new CervezaNegra(lupuloPorLitro=3, paisDeOrigen="Irlanda", graduacionAlcoholica=10)
+	const hofbrau = new CervezaRoja(lupuloPorLitro=1.5, paisDeOrigen="Alemania", graduacionAlcoholica=8)
+	const corona2 = new CervezaRubia(lupuloPorLitro=3, paisDeOrigen="Mexico", graduacionAlcoholica=6)
+	const guinness2 = new CervezaNegra(lupuloPorLitro=6, paisDeOrigen="Irlanda", graduacionAlcoholica=4)
+	const hofbrau2 = new CervezaRoja(lupuloPorLitro=5, paisDeOrigen="Mexico", graduacionAlcoholica=3)
+	
+	/*Creación de las instancias de Jarra*/
+	const jarra1 = new Jarra(litros=1, marca=corona)
+	const jarra2 = new Jarra(litros=1.5, marca=guinness)
+	const jarra3 = new Jarra(litros=2, marca=hofbrau)
+	const jarra4 = new Jarra(litros=1.5, marca=corona2)
+	const jarra5 = new Jarra(litros=3, marca=guinness2)
+	const jarra6 = new Jarra(litros=0.5, marca=hofbrau2)
+	
+	/*Test sobre el contenido alcohólico de cada jarra de cerveza*/
+	assert.equals(0.05, jarra1.contenidoDeAlcohol())
+	assert.equals(0.06, jarra2.contenidoDeAlcohol())
+	assert.equals(0.125, jarra3.contenidoDeAlcohol())
+	assert.equals(0.09, jarra4.contenidoDeAlcohol())
+	assert.equals(0.24, jarra5.contenidoDeAlcohol())
+	assert.equals(0.04375, jarra6.contenidoDeAlcohol())
+	
+	/*Creación de las instancias de las personas*/
+	const victor = new Belga(peso=85, leGustaLaMusicaTradicional=true, nivelDeAguante=5)
+	const ludmila = new Checo(peso=57, leGustaLaMusicaTradicional=false, nivelDeAguante=3)
+	const adolph = new Aleman(peso=75, leGustaLaMusicaTradicional=true, nivelDeAguante=8)
+	const thomas = new Belga(peso=62, leGustaLaMusicaTradicional=false, nivelDeAguante=19)
+	const albert = new Aleman(peso=73, leGustaLaMusicaTradicional=true, nivelDeAguante=12)
+	const milena = new Checo(peso=50, leGustaLaMusicaTradicional=true, nivelDeAguante=7)
+	
+	/*Test a las personas*/
+	victor.comprarJarras([jarra5, jarra6])
+	ludmila.comprarJarra(jarra2)
+	adolph.comprarJarras([jarra3, jarra3, jarra3])
+	thomas.comprarJarras([jarra6, jarra6])
+	albert.comprarJarras([jarra5, jarra4, jarra5, jarra1])
+	milena.comprarJarras([jarra2, jarra2])
+	
+	/*Resultados del test en Victor*/
+	assert.equals(0.28375, victor.totalDeAlcoholIngerido())
+	assert.that(victor.estaEbria())
+	assert.that(victor.leGusta(hofbrau2))
+	assert.notThat(victor.leGusta(corona))
+	
+	/*Resultados del test en Ludmila*/
+	assert.equals(0.06, ludmila.totalDeAlcoholIngerido())
+	assert.that(ludmila.estaEbria())
+	assert.that(ludmila.leGusta(guinness))
+	assert.notThat(ludmila.leGusta(corona))
+	
+	/*Resultados del test en Adolph*/
+	assert.equals(0.375, adolph.totalDeAlcoholIngerido())
+	assert.that(adolph.estaEbria())
+	assert.that(adolph.leGusta(hofbrau2))
+	assert.that(adolph.leGusta(corona))
+	
+	/*Resultados del test en Thomas*/
+	assert.equals(0.0875, thomas.totalDeAlcoholIngerido())
+	assert.notThat(thomas.estaEbria())
+	assert.that(thomas.leGusta(hofbrau2))
+	assert.notThat(thomas.leGusta(corona2))
+	
+	/*Resultados del test en Albert*/
+	assert.equals(0.62, albert.totalDeAlcoholIngerido())
+	assert.that(albert.estaEbria())
+	assert.that(albert.leGusta(hofbrau2))
+	assert.that(albert.leGusta(corona2))
+	
+	/*Resultados del test en Milena*/
+	assert.equals(0.12, milena.totalDeAlcoholIngerido())
+	assert.notThat(milena.estaEbria())
+	assert.that(milena.leGusta(guinness))
+	assert.notThat(milena.leGusta(corona2))
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
