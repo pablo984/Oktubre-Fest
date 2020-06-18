@@ -3,9 +3,12 @@ import personas.*
 
 
 test "Requerimientos - Primera parte" {
-	/*Creación de las instancias de Cervezas Rubia, Negra y Roja*/
+	/*Creación y configuración de las instancias de Cervezas Rubia, Negra y Roja*/
 	const corona = new CervezaRubia(lupuloPorLitro=2, paisDeOrigen="Mexico", graduacionAlcoholica=5)
-	const guinness = new CervezaNegra(lupuloPorLitro=3, paisDeOrigen="Irlanda", graduacionAlcoholica=10)
+	const guinness = new CervezaNegra()
+	guinness.lupuloPorLitro(3)
+	guinness.paisDeOrigen("Irlanda")
+	
 	const hofbrau = new CervezaRoja(lupuloPorLitro=1.5, paisDeOrigen="Alemania", graduacionAlcoholica=8)
 	const corona2 = new CervezaRubia(lupuloPorLitro=3, paisDeOrigen="Mexico", graduacionAlcoholica=6)
 	const guinness2 = new CervezaNegra(lupuloPorLitro=6, paisDeOrigen="Irlanda", graduacionAlcoholica=4)
