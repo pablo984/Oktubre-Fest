@@ -4,42 +4,145 @@ import carpas.*
 
 test "Requerimientos - Segunda parte" {
 	/*Creación de las instancias de Cervezas Rubia, Negra y Roja*/
-	const corona = new CervezaRubia(lupuloPorLitro=2, paisDeOrigen="Mexico", graduacionAlcoholica=5)
-	const guinness = new CervezaNegra(lupuloPorLitro=3, paisDeOrigen="Irlanda", graduacionAlcoholica=10)
-	const hofbrau = new CervezaRoja(lupuloPorLitro=1.5, paisDeOrigen="Alemania", graduacionAlcoholica=8)
-	const corona2 = new CervezaRubia(lupuloPorLitro=3, paisDeOrigen="Mexico", graduacionAlcoholica=9)
-	const guinness2 = new CervezaNegra(lupuloPorLitro=6, paisDeOrigen="Irlanda", graduacionAlcoholica=4)
-	const hofbrau2 = new CervezaRoja(lupuloPorLitro=5, paisDeOrigen="Mexico", graduacionAlcoholica=3)
+	const corona = new CervezaRubia(lupuloPorLitro=5, paisDeOrigen="Mexico", graduacionAlcoholica=9)
 	
-	/*Creación de las instancias de Jarra*/
-	const jarra1 = new Jarra(litros=1, marca=corona)
-	const jarra2 = new Jarra(litros=1.5, marca=guinness)
-	const jarra3 = new Jarra(litros=2, marca=hofbrau)
-	const jarra4 = new Jarra(litros=1.5, marca=corona2)
-	const jarra5 = new Jarra(litros=3, marca=guinness2)
-	const jarra6 = new Jarra(litros=0.5, marca=hofbrau2)	
+	const guinness = new CervezaNegra()
+	guinness.lupuloPorLitro(4)
+	guinness.calcularGraduacion()
+	guinness.paisDeOrigen("Irlanda")	
 	
-	/*Creación de las instancias de las personas*/
-	const victor = new Belga(peso=85, leGustaLaMusicaTradicional=true, nivelDeAguante=5)
-	const ludmila = new Checo(peso=57, leGustaLaMusicaTradicional=false, nivelDeAguante=3)
-	const adolph = new Aleman(peso=75, leGustaLaMusicaTradicional=true, nivelDeAguante=8)
-	const thomas = new Belga(peso=62, leGustaLaMusicaTradicional=false, nivelDeAguante=19)
-	const albert = new Aleman(peso=73, leGustaLaMusicaTradicional=true, nivelDeAguante=12)
-	const milena = new Checo(peso=50, leGustaLaMusicaTradicional=true, nivelDeAguante=7)
-
+	const hofbrau = new CervezaRoja()
+	hofbrau.lupuloPorLitro(5)
+	hofbrau.calcularGraduacion()
+	hofbrau.paisDeOrigen("Alemania")
+	
+	const stellaArtois = new CervezaRubia(lupuloPorLitro=5, paisDeOrigen="Belgica", graduacionAlcoholica=10)
+	
+	const pilsner = new CervezaNegra()
+	pilsner.lupuloPorLitro(2)
+	pilsner.calcularGraduacion()
+	pilsner.paisDeOrigen("Checoslovaquia")
+	
+	const paulaner = new CervezaRoja() 
+	paulaner.lupuloPorLitro(3)
+	paulaner.calcularGraduacion()
+	paulaner.paisDeOrigen("Alemania")
+	
+	/*Test sobre la graduacion alcohólica de las cervezas negra y roja*/
+	assert.equals(4, guinness.graduacionAlcoholica())
+	assert.equals(2.5, hofbrau.graduacionAlcoholica())
+	assert.equals(8, pilsner.graduacionAlcoholica())
+	assert.equals(7.5, paulaner.graduacionAlcoholica())
+	
+	/*Creacion de las instancias de Jarra*/
+	const jarraCorona = new Jarra()
+	jarraCorona.marca(corona)
+	jarraCorona.litros(1)
+	
+	const jarraGuinness = new Jarra()
+	jarraGuinness.marca(guinness)
+	
+	const jarraHofbrau = new Jarra()
+	jarraHofbrau.marca(hofbrau)
+	
+	const jarraStellaArtois = new Jarra()
+	jarraStellaArtois.marca(stellaArtois)
+	
+	const jarraPilsner = new Jarra()
+	jarraPilsner.marca(pilsner)
+	
+	const jarraPaulaner = new Jarra() 
+	jarraPaulaner.marca(paulaner)
+	
+	/*Creación de las instancias de Persona*/
+	const victor = new Belga(peso=85, leGustaLaMusicaTradicional=true, nivelDeAguante=7, nacionalidad="Belgica")
+	const ludmila = new Checo(peso=57, leGustaLaMusicaTradicional=false, nivelDeAguante=6, nacionalidad="Checoslovaquia")
+	const adolph = new Aleman(peso=75, leGustaLaMusicaTradicional=true, nivelDeAguante=8, nacionalidad="Alemania")
+	const carlos = new Persona(peso=80, leGustaLaMusicaTradicional=true, nivelDeAguante=12, nacionalidad="Mexico")
+	const marie = new Belga(peso=60, leGustaLaMusicaTradicional=true, nivelDeAguante=5, nacionalidad="Belgica")
+	const herman = new Aleman(peso=105, leGustaLaMusicaTradicional=false, nivelDeAguante=15, nacionalidad="Alemania")
+	
 	/*Creación de las instancias de Carpa*/
-	const carpa1 = new Carpa(limiteDeGente=50, tieneBandaMusical=false, marcaSponsor=corona)
-	const carpa2 = new Carpa(limiteDeGente=100, tieneBandaMusical=true, marcaSponsor=guinness)
-	const carpa3 = new Carpa(limiteDeGente=80, tieneBandaMusical=true, marcaSponsor=hofbrau)
-	const carpa4 = new Carpa(limiteDeGente=40, tieneBandaMusical=false, marcaSponsor=hofbrau2)
-	const carpa5 = new Carpa(limiteDeGente=90, tieneBandaMusical=true, marcaSponsor=corona2)
-	const carpa6 = new Carpa(limiteDeGente=70, tieneBandaMusical=true, marcaSponsor=guinness2)
+	const carpaCorona = new Carpa()
+	carpaCorona.limiteDeGente(4)
+	carpaCorona.tieneBandaMusical(true)
+	carpaCorona.marcaSponsor(corona)
 		
-	/*Test para saber si una persona quiere entrar a determinadas Carpas*/
-	assert.that	(victor.quiereEntrarA(carpa6))
-	assert.notThat(victor.quiereEntrarA(carpa4))
+	const carpaGuinness = new Carpa()
+	carpaGuinness.limiteDeGente(2)
+	carpaGuinness.tieneBandaMusical(false)
+	carpaGuinness.marcaSponsor(guinness)
+		
+	const carpaHofbrau = new Carpa()
+	carpaHofbrau.limiteDeGente(5)
+	carpaHofbrau.tieneBandaMusical(true)
+	carpaHofbrau.marcaSponsor(hofbrau)
+		
+	const carpaStellaArtois =new Carpa()
+	carpaStellaArtois.limiteDeGente(3)
+	carpaStellaArtois.tieneBandaMusical(false)
+	carpaStellaArtois.marcaSponsor(stellaArtois)
 	
-	assert.that(ludmila.quiereEntrarA(carpa5))
-	assert.notThat(ludmila.quiereEntrarA(carpa2))
+	const carpaPilsner = new Carpa()
+	carpaPilsner.limiteDeGente(3)
+	carpaPilsner.tieneBandaMusical(false)
+	carpaPilsner.marcaSponsor(pilsner)
+		
+	const carpaPaulaner = new Carpa() 
+	carpaPaulaner.limiteDeGente(6)
+	carpaPaulaner.tieneBandaMusical(true)
+	carpaPaulaner.marcaSponsor(paulaner)
+		
+	/*Test-5 para saber si una persona quiere entrar a una Carpa*/
+	assert.that(victor.quiereIngresarA(carpaCorona))
+	assert.notThat(victor.quiereIngresarA(carpaGuinness))
+	
+	assert.that(ludmila.quiereIngresarA(carpaStellaArtois))
+	assert.notThat(ludmila.quiereIngresarA(carpaPaulaner))
+	
+	assert.that(adolph.quiereIngresarA(carpaHofbrau))
+	assert.notThat(adolph.quiereIngresarA(carpaPilsner))
+	
+	assert.that(carlos.quiereIngresarA(carpaPaulaner))
+	assert.notThat(carlos.quiereIngresarA(carpaGuinness))
+	
+	assert.that(marie.quiereIngresarA(carpaHofbrau))
+	assert.notThat(marie.quiereIngresarA(carpaPaulaner))
+	
+	assert.that(herman.quiereIngresarA(carpaGuinness))
+	assert.notThat(herman.quiereIngresarA(carpaHofbrau))
+	
+	/*Test-6 para saber si una Carpa deja ingresar a una Persona*/
+	carpaCorona.ingresarPersona(ludmila)
+	carpaCorona.ingresarPersona(adolph)
+	carpaCorona.ingresarPersona(carlos)	
+	assert.that(carpaCorona.dejaIngresarA(victor))
+	
+	carpaGuinness.ingresarPersona(herman)
+	carpaGuinness.ingresarPersona(marie)
+	assert.notThat(carpaGuinness.dejaIngresarA(victor)) //No lo dejan pasar porque la carpa está llena
+	
+	adolph.comprarJarras([jarraCorona, jarraCorona, jarraCorona])
+	assert.that(adolph.estaEbria())
+	assert.notThat(carpaHofbrau.dejaIngresarA(adolph)) //No lo dejan pasar porque está borracho (tomó antes de entrar)
+	
+	/*Test-7 para saber si una persona puede entrar a una Carpa y si ésta lo deja entrar*/
+	assert.that(victor.puedeIngresarA(carpaCorona))
+	assert.notThat(victor.puedeIngresarA(carpaGuinness))
+	assert.that(marie.puedeIngresarA(carpaCorona))
+	assert.notThat(marie.puedeIngresarA(carpaStellaArtois))
+	assert.that(ludmila.puedeIngresarA(carpaStellaArtois))
+	assert.notThat(ludmila.puedeIngresarA(carpaGuinness))
+	
+	/*Test-8 hacer que una persona entre a una carpa y si no puede generar un error*/
+	
+	assert.equals("Exception raised!", carpaGuinness.ingresarPersona(victor))
+	
+	
+	
+	
+	
+	
+	
 
 }

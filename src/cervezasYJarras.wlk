@@ -10,18 +10,18 @@ class CervezaRubia {
 }
 
 class CervezaNegra inherits CervezaRubia {
-	override method graduacionAlcoholica() {
+	method calcularGraduacion() {
 		graduacionAlcoholica = graduacionCervezaNegra.graduacionReglamentaria() - lupuloPorLitro * 2
 	}
 }
 
 /*Objeto auxiliar para la cerveza negra*/
 object graduacionCervezaNegra {
-	var property graduacionReglamentaria = 10
+	var property graduacionReglamentaria = 12
 }
 
 class CervezaRoja inherits CervezaNegra {
-	override method graduacionAlcoholica() {
+	override method calcularGraduacion() {
 		super()
 		graduacionAlcoholica = graduacionAlcoholica * 1.25
 	}
