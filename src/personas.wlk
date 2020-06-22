@@ -44,13 +44,12 @@ class Persona {
 			unaCarpa.ingresarPersona(self)			
 		}
 		else {
-			self.error("Acceso Denegado")
+			console.println("Acceso Denegado")
 		}		
 	}
 	method esPatriota() {
 		return jarrasCompradas.all({ jarra => jarra.marca().paisDeOrigen() == self.nacionalidad() })
 	}
-	
 }
 
 /*SUBCLASE*/

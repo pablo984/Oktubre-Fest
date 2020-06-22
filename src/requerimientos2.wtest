@@ -19,7 +19,7 @@ test "Requerimientos - Segunda parte" {
 	const stellaArtois = new CervezaRubia(lupuloPorLitro=5, paisDeOrigen="Belgica", graduacionAlcoholica=10)
 	
 	const pilsner = new CervezaNegra()
-	pilsner.lupuloPorLitro(2)
+	pilsner.lupuloPorLitro(3)
 	pilsner.calcularGraduacion()
 	pilsner.paisDeOrigen("Checoslovaquia")
 	
@@ -29,15 +29,15 @@ test "Requerimientos - Segunda parte" {
 	paulaner.paisDeOrigen("Alemania")
 	
 	/*Test sobre la graduacion alcohólica de las cervezas negra y roja*/
-	assert.equals(4, guinness.graduacionAlcoholica())
-	assert.equals(2.5, hofbrau.graduacionAlcoholica())
-	assert.equals(8, pilsner.graduacionAlcoholica())
+	assert.equals(8, guinness.graduacionAlcoholica())
+	assert.equals(12.5, hofbrau.graduacionAlcoholica())
+	assert.equals(6, pilsner.graduacionAlcoholica())
 	assert.equals(7.5, paulaner.graduacionAlcoholica())
 	
 	/*Creacion de las instancias de Jarra*/
 	const jarraCorona = new Jarra()
 	jarraCorona.marca(corona)
-	jarraCorona.litros(1)
+	jarraCorona.litros(1) //Se le agregó el valor de los litros porque en el punto 6 se utiliza esta jarra
 	
 	const jarraGuinness = new Jarra()
 	jarraGuinness.marca(guinness)
@@ -50,7 +50,9 @@ test "Requerimientos - Segunda parte" {
 	
 	const jarraPilsner = new Jarra()
 	jarraPilsner.marca(pilsner)
-	
+	const jarraPilsner2 = new Jarra()
+	jarraPilsner2.marca(pilsner)
+		
 	const jarraPaulaner = new Jarra() 
 	jarraPaulaner.marca(paulaner)
 	
@@ -61,6 +63,9 @@ test "Requerimientos - Segunda parte" {
 	const carlos = new Persona(peso=80, leGustaLaMusicaTradicional=true, nivelDeAguante=12, nacionalidad="Mexico")
 	const marie = new Belga(peso=60, leGustaLaMusicaTradicional=true, nivelDeAguante=5, nacionalidad="Belgica")
 	const herman = new Aleman(peso=105, leGustaLaMusicaTradicional=false, nivelDeAguante=15, nacionalidad="Alemania")
+	const pablo = new Persona(peso=64, leGustaLaMusicaTradicional=false, nivelDeAguante=8, nacionalidad="Argentina")
+	const laura = new Persona(peso=60, leGustaLaMusicaTradicional=false, nivelDeAguante=4, nacionalidad="Checoslovaquia")
+	const mauro = new Persona(peso=75, leGustaLaMusicaTradicional=false, nivelDeAguante=6, nacionalidad="Argentina")
 	
 	/*Creación de las instancias de Carpa*/
 	const carpaCorona = new Carpa()
@@ -134,11 +139,42 @@ test "Requerimientos - Segunda parte" {
 	assert.that(ludmila.puedeIngresarA(carpaStellaArtois))
 	assert.notThat(ludmila.puedeIngresarA(carpaGuinness))
 	
-	/*Test-8 hacer que una persona entre a una carpa y si no puede generar un error*/
+	/*Test-8 hacer que una persona entre a una carpa y si no puede generar un error*/	
+	adolph.ingresarA(carpaHofbrau) //"Acceso denegado" impreso en consola
 	
-	assert.equals("Exception raised!", carpaGuinness.ingresarPersona(victor))
+	/*Test-9 hacer que la carpa le sirva una jarra de cerveza a una persona */
+	carlos.ingresarA(carpaPaulaner)
+	assert.equals([carlos], carpaPaulaner.personasDentro())
 	
+	carpaPaulaner.venderUnaJarra(jarraPaulaner, 1.5)
+	assert.equals([jarraPaulaner], carlos.jarrasCompradas())
+	assert.equals(0.1125, carlos.totalDeAlcoholIngerido())
 	
+	carpaPilsner.venderUnaJarra(jarraPilsner, 1) //"No hay gente adentro para vender una jarra" impreso en consola
+	
+	/*Test-10 saber cuantos ebrios empedernidos hay dentro de la carpa*/
+	pablo.ingresarA(carpaPilsner)
+	laura.ingresarA(carpaPilsner)
+	mauro.ingresarA(carpaPilsner)
+	
+	jarraPilsner.litros(0.5)
+	jarraPilsner2.litros(1.5)
+	
+	pablo.comprarJarra(jarraPilsner2)
+	laura.comprarJarra(jarraPilsner)
+	laura.comprarJarra(jarraPilsner)
+	mauro.comprarJarra(jarraPilsner2)
+	mauro.comprarJarra(jarraPilsner2)
+	mauro.comprarJarra(jarraPilsner2)
+	pablo.comprarJarra(jarraPilsner2)
+	pablo.comprarJarra(jarraPilsner2)
+	
+	assert.equals(2, carpaPilsner.cantidadDeEbriosEmpedernidos())
+	
+	/*Test-11 saber si una persona es patriota al saber si todas las jarras que compró son de su país*/
+	assert.that(laura.esPatriota())
+	assert.notThat(pablo.esPatriota())
+	assert.notThat(mauro.esPatriota())
 	
 	
 	

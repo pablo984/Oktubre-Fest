@@ -1,4 +1,4 @@
-class CervezaRubia {
+class Cerveza {
 	var property lupuloPorLitro //un número
 	var property paisDeOrigen //un país
 	var property graduacionAlcoholica //porcentaje de alcohol en volúmen
@@ -6,18 +6,21 @@ class CervezaRubia {
 	method alcoholPorLitro() {
 		return graduacionAlcoholica / 100
 	}
-
 }
 
-class CervezaNegra inherits CervezaRubia {
+class CervezaRubia inherits Cerveza {
+	
+}
+
+class CervezaNegra inherits Cerveza {
 	method calcularGraduacion() {
-		graduacionAlcoholica = graduacionCervezaNegra.graduacionReglamentaria() - lupuloPorLitro * 2
+		graduacionAlcoholica = graduacionCervezaNegra.graduacionReglamentaria().min(lupuloPorLitro * 2)
 	}
 }
 
 /*Objeto auxiliar para la cerveza negra*/
 object graduacionCervezaNegra {
-	var property graduacionReglamentaria = 12
+	var property graduacionReglamentaria = 10
 }
 
 class CervezaRoja inherits CervezaNegra {

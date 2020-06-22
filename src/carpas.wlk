@@ -8,12 +8,7 @@ class Carpa {
 	const property personasDentro = []
 		
 	method ingresarPersona(unaPersona) {
-		if (unaPersona.puedeIngresarA(self)) {
 		personasDentro.add(unaPersona)
-	   }
-	   else {
-	   	console.println("Exception raised!")
-	   }
 	}
 	method cantidadDePersonas() {
 		return personasDentro.size()
@@ -28,7 +23,7 @@ class Carpa {
 			personasDentro.forEach({ per => per.comprarJarra(unaJarra) })
 		}
 		else {
-			self.error("No hay gente para vender")
+			console.println("No hay gente adentro para vender una jarra")
 		}
 	}
 	method cantidadDeEbriosEmpedernidos() {

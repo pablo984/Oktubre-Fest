@@ -17,8 +17,8 @@ test "Requerimientos - Primera parte" {
 	hofbrau.paisDeOrigen("Alemania")
 	
 	/*Test sobre la graduacion alcohólica de las cerveza negra y la roja*/
-	assert.equals(4, guinness.graduacionAlcoholica())
-	assert.equals(2.5, hofbrau.graduacionAlcoholica())
+	assert.equals(8, guinness.graduacionAlcoholica())
+	assert.equals(12.5, hofbrau.graduacionAlcoholica())
 		
 	/*Creación de las instancias de Jarra*/
 	const jarra1 = new Jarra(litros=1, marca=corona)
@@ -27,8 +27,8 @@ test "Requerimientos - Primera parte" {
 		
 	/*Test-1 sobre el contenido alcohólico de cada jarra de cerveza*/
 	assert.equals(0.09, jarra1.contenidoDeAlcohol())
-	assert.equals(0.06, jarra2.contenidoDeAlcohol())
-	assert.equals(0.05, jarra3.contenidoDeAlcohol())	
+	assert.equals(0.12, jarra2.contenidoDeAlcohol())
+	assert.equals(0.25, jarra3.contenidoDeAlcohol())	
 	
 	/*Creación de las instancias de las personas*/
 	const victor = new Belga(peso=85, leGustaLaMusicaTradicional=true, nivelDeAguante=7, nacionalidad="Belgica")
@@ -41,7 +41,7 @@ test "Requerimientos - Primera parte" {
 	adolph.comprarJarras([jarra1, jarra1, jarra3])	
 	
 	/*Resultados del test en Victor*/
-	assert.equals(0.1, victor.totalDeAlcoholIngerido())
+	assert.equals(0.5, victor.totalDeAlcoholIngerido())
 	assert.that(victor.estaEbria())
 	assert.that(victor.leGusta(hofbrau))
 	assert.notThat(victor.leGusta(corona))
@@ -52,10 +52,10 @@ test "Requerimientos - Primera parte" {
 	assert.notThat(ludmila.estaEbria())
 	assert.that(ludmila.leGusta(corona))
 	assert.notThat(ludmila.leGusta(guinness))
-	assert.notThat(ludmila.leGusta(hofbrau))
+	assert.that(ludmila.leGusta(hofbrau))
 	
 	/*Resultados del test en Adolph*/
-	assert.equals(0.23, adolph.totalDeAlcoholIngerido())
+	assert.equals(0.43, adolph.totalDeAlcoholIngerido())
 	assert.that(adolph.estaEbria())
 	assert.that(adolph.leGusta(hofbrau))
 	assert.that(adolph.leGusta(corona))
